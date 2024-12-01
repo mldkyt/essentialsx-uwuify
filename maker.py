@@ -12,13 +12,16 @@ def uwuify(text: str):
     words = text.split(' ')
     words_transformed = []
     for i in range(len(words)):
-        words_transformed.append(i)
+        words_transformed.append(words[i])
         if random.randint(0, 5) == 1:
-            words_transformed.append(random.choice(
-                ["uwu", "owo", ">" + "/" * random.randint(3, 7) + "<", "a" + "wa" * random.randint(2, 4),
-                    ''.join(random.choices(string.ascii_lowercase, k=random.randint(10, 40)))]))
+            words_transformed.append(random.choice([
+                "uwu", "owo",
+                ">" + "/" * random.randint(3, 7) + "<",
+                "a" + "wa" * random.randint(2, 4),
+                ''.join(random.choices(string.ascii_lowercase, k=random.randint(10, 40)))
+            ]))
 
-    for i in words:
+    for i in words_transformed:
         if re.match(r'[a-zA-Z]+', i):
             i = i.lower()  # bottom speech
             i = uwu(i, flags=UWU_FLAGS)
