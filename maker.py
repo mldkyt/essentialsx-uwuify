@@ -22,9 +22,25 @@ def uwuify(text: str):
             ]))
 
     for i in words_transformed:
-        if re.match(r'[a-zA-Z]+', i):
-            i = i.lower()  # bottom speech
-            i = uwu(i, flags=UWU_FLAGS)
+        if re.match(r'[a-zA-Z><\[\]/]+', i):
+            if i.startswith('<'):
+                # we assume it also ends with brackets
+                i = i[1:-1].lower()  # bottom speech
+                i = uwu(i, flags=UWU_FLAGS)
+                i = "<" + i + ">"
+            elif i.startswith('['):
+                # we assume it also ends with brackets
+                i = i[1:-1].lower()  # bottom speech
+                i = uwu(i, flags=UWU_FLAGS)
+                i = "[" + i + "]"
+            elif i.endswith('/'):
+                # we assume it also ends with brackets
+                i = i[2:-1].lower()  # bottom speech
+                i = uwu(i, flags=UWU_FLAGS)
+                i = "/<" + i + ">"
+            else:
+                i = i.lower()  # bottom speech
+                i = uwu(i, flags=UWU_FLAGS)
 
         text_final += i + " "
 
